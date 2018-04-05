@@ -11,6 +11,10 @@ class TestFlaskApiUsingRequests(unittest.TestCase):
     response = requests.get('http://localhost:5000/my-resource/0')
     self.assertEqual(response.json(), {'hello': 'world'})
 
+  def test_post(self):
+    response = requests.post('http://localhost:5000/my-resource/0')
+    self.assertEqual(response.status_code, 403)
+
 
 class TestFlaskApi(unittest.TestCase):
 
@@ -22,6 +26,9 @@ class TestFlaskApi(unittest.TestCase):
     self.assertEqual(json.loads(response.get_data().decode(
         sys.getdefaultencoding())), {'hello': 'world'})
 
+  def test_post(self):
+    response = self.app.post('/my-resource/0')
+    self.assertEqual(response.status_code, 403)
 
 if __name__ == "__main__":
   unittest.main()
