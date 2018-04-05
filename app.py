@@ -10,7 +10,7 @@ api = Api(app, version='1.0', title='Sample API',
 @api.doc(params={'id': 'An ID'})
 class MyResource(Resource):
     def get(self, id):
-        return {}
+        return {'hello': 'world'}
 
     @api.doc(responses={403: 'Not Authorized'})
     def post(self, id):
